@@ -7,6 +7,8 @@ package org.topicquests.os.asr.info.api;
 
 import com.tinkerpop.blueprints.Vertex;
 
+import net.minidev.json.JSONObject;
+
 /**
  * 
  * @author jackpark
@@ -14,4 +16,6 @@ import com.tinkerpop.blueprints.Vertex;
  */
 public interface IDocument extends Vertex {
 
+	
+	JSONObject getJSONObject();
 }

@@ -9,6 +9,9 @@ import java.util.Map;
 
 import org.topicquests.hyperbrane.api.IWordGram;
 import org.topicquests.support.api.IResult;
+
+import com.tinkerpop.blueprints.Edge;
+
 import org.topicquests.os.asr.info.InformationEnvironment;
 import org.topicquests.os.asr.wordgram.api.IWordGramAgentModel;
 
@@ -47,30 +50,62 @@ import org.topicquests.os.asr.wordgram.api.IWordGramAgentModel;
  * 
  */
 public interface IInfoOcean extends IWordGramAgentModel {
+	public static final String
+		WG_WG_LABEL		= "WG-WGArc",
+		WG_TP_LABEL		= "WG-TupleArc",
+		WG_WG_TR_LABEL	= "TripleArc",
+		AU_DOC_LABEL	= "AU-DocArc",
+		AU_EMP_LABEL	= "AU-EmpArc",
+		WG_DOC_Label	= "WG-DocArc";
+	
+	void setEnvironment(InformationEnvironment env); 
 
-	//public IWordGram createWordGramNode(String id, String text, String sentenceId, String lexType);
+	// we pick up wordgram API from the parent
 	
-	//public IResult addWordGramSentenceId(String id, String sentenceId);
-	
-	//public IResult addWordGramTopicLocator(String id, String topicLocator);
-	
-	//public IResult addWordGramLexType(String id, String lexType);
-	
-	//public IResult addWordGramProperties(String id, Map<String, Object> properties);
-	
-	//public IResult getWordGram(String id);
-	
-	//public IResult getThisWordGram(String id);
+	//////////////////////////
+	// Nodes - Vertices
+	//////////////////////////
 	
 	ITriple createTripleNode(String id, String label);
 	
+	IResult getTriple(String id);
+	
 	IPerson createPersonNode(String id, String label);
 	
+	IResult getPerson(String id);
+	
 	IEnterprise createEnterpriseNode(String id, String label);
+	
+	IResult getEnterpriseNode(String id);
 	
 	// links instead public IRelation createRelationNode(String id, String label, String type);
 	
 	IDocument createDocumentNode(String id, String label, String docId);
 	
-	void setEnvironment(InformationEnvironment env); 
+	IResult getDocumentNode(String id);
+		
+	//////////////////////////
+	// Links - Edges
+	//////////////////////////
+	
+	/**
+	 * This creates an edge
+	 * @param wgFromId
+	 * @param wgToId
+	 * @param sentenceId
+	 * @return
+	 */
+	Edge connectWordGramsBySentenceId(String wgFromId, String wgToId, String sentenceId);
+	
+	Edge connectWordGramToTupleBySentenceId(String wgFromId, String tpToId, String sentenceId);
+	
+	Edge connectAuthorToDocument(String auFromId, String docToId);
+	
+	Edge connectAuthorToEmployer(String auFromId, String empToId);
+	
+	Edge connectAuthorToFunder(String auFromId, String funToId); //???
+	Edge connectDocumentToFunder(String docFromId, String funToId); //???
+	Edge connectEmployerFunder(String empFromId, String funToId); // ???
+
+
 }

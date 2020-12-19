@@ -1,5 +1,7 @@
-/**
- * 
+/*
+ * Copyright 2020 TopicQuests Foundation
+ *  This source code is available under the terms of the Affero General Public License v3.
+ *  Please see LICENSE.txt for full license terms, including the availability of proprietary exceptions.
  */
 package org.topicquests.os.asr.info;
 
@@ -15,6 +17,8 @@ import com.tinkerpop.blueprints.VertexQuery;
 import com.tinkerpop.blueprints.impls.sql.SqlGraph;
 import com.tinkerpop.blueprints.impls.sql.SqlVertex;
 
+import net.minidev.json.JSONObject;
+
 /**
  * @author jackpark
  *
@@ -24,73 +28,73 @@ public class DocumentNode implements IDocument {
 	private SqlGraph graph;
 	private SqlVertex data;
 	private static final long serialVersionUID = 1L;
+	private Object synchObject;
+	private boolean _isNew = false;
 	/**
-	 * 
+	 * @param v
+	 * @param env
 	 */
 	public DocumentNode(SqlVertex v, WordGramEnvironment env) {
 		data = v;
 		//label is set later
 		environment = env;
+		environment.logDebug("DocumentNode- "+data);
+		graph = environment.getSqlGraph();
+		synchObject = new Object();
 	}
 
 	@Override
 	public Iterable<Edge> getEdges(Direction direction, String... labels) {
-		// TODO Auto-generated method stub
-		return null;
+		return data.getEdges(direction, labels);
 	}
 
 	@Override
 	public Iterable<Vertex> getVertices(Direction direction, String... labels) {
-		// TODO Auto-generated method stub
-		return null;
+		return data.getVertices(direction, labels);
 	}
 
 	@Override
 	public VertexQuery query() {
-		// TODO Auto-generated method stub
-		return null;
+		return data.query();
 	}
 
 	@Override
 	public Edge addEdge(String label, Vertex inVertex) {
-		// TODO Auto-generated method stub
-		return null;
+		return data.addEdge(label, inVertex);
 	}
 
 	@Override
 	public <T> T getProperty(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		return data.getProperty(key);
 	}
 
 	@Override
 	public Set<String> getPropertyKeys() {
-		// TODO Auto-generated method stub
-		return null;
+		return data.getPropertyKeys();
 	}
 
 	@Override
 	public void setProperty(String key, Object value) {
-		// TODO Auto-generated method stub
-
+		data.setProperty(key, value);
 	}
 
 	@Override
 	public <T> T removeProperty(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		return data.removeProperty(key);
 	}
 
 	@Override
 	public void remove() {
-		// TODO Auto-generated method stub
-
+		data.remove();
 	}
 
 	@Override
 	public Object getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return data.getId();
 	}
 
+	@Override
+	public JSONObject getJSONObject() {
+		return data.getData();
+	}
 }

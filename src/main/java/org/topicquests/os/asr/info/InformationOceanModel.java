@@ -10,8 +10,10 @@ import org.topicquests.os.asr.info.api.IPerson;
 import org.topicquests.os.asr.info.api.ITriple;
 import org.topicquests.os.asr.wordgram.WordGramEnvironment;
 import org.topicquests.os.asr.wordgram.WordGramModel;
+import org.topicquests.support.api.IResult;
 import org.topicquests.support.util.LRUCache;
 
+import com.tinkerpop.blueprints.Edge;
 import com.tinkerpop.blueprints.impls.sql.SqlGraph;
 import com.tinkerpop.blueprints.impls.sql.SqlVertex;
 
@@ -81,6 +83,76 @@ public class InformationOceanModel extends WordGramModel implements IInfoOcean {
 		IDocument result = new DocumentNode(v, wgEnvironment);
 		// TODO Auto-generated method stub
 		return result;
+	}
+
+	@Override
+	public IResult getTriple(String id) {
+		IResult result = null;
+		// TODO Auto-generated method stub
+		return result;
+	}
+
+	@Override
+	public IResult getPerson(String id) {
+		IResult result = null;
+		// TODO Auto-generated method stub
+		return result;
+	}
+
+	@Override
+	public IResult getEnterpriseNode(String id) {
+		IResult result = null;
+		// TODO Auto-generated method stub
+		return result;
+	}
+
+	@Override
+	public IResult getDocumentNode(String id) {
+		IResult result = null;
+		// TODO Auto-generated method stub
+		return result;
+	}
+
+	@Override
+	public Edge connectWordGramsBySentenceId(String wgFromId, String wgToId, String sentenceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Edge connectWordGramToTupleBySentenceId(String wgFromId, String tpToId, String sentenceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Edge connectAuthorToDocument(String auFromId, String docToId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Edge connectAuthorToEmployer(String auFromId, String empToId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Edge connectAuthorToFunder(String auFromId, String funToId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Edge connectDocumentToFunder(String docFromId, String funToId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Edge connectEmployerFunder(String empFromId, String funToId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

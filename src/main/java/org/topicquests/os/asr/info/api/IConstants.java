@@ -27,7 +27,7 @@ public interface IConstants {
 		FUNDER_LINK			= "FndrLink",
 		SENTENCE_LINK		= "SentLink",
 		TRIPLE_LINK			= "TrplLink";
-	
+	/** Coherence-Relation Link types */
 	public static final String
 		DISAGREE_LINK		= "DisagreesWith",
 		AGREE_LINK			= "AgreesWith",
@@ -35,5 +35,9 @@ public interface IConstants {
 		PROVE_LINK			= "Proves",
 		DISPROVE_LINK		= "Disproves";
 		//TODO add more
+	
+	/** node fields */
+	public static final String 
+	ID			 			= "id";
 
 }

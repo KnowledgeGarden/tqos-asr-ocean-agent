@@ -29,11 +29,15 @@ public class InformationEnvironment extends RootEnvironment {
 	public IInfoOcean getDSL() {
 		return dsl;
 	}
+	
+	public WordGramEnvironment getWordGramEnvironment() {
+		return wordGramEnvironment;
+	}
 
 
 	@Override
 	public void shutDown() {
-		// TODO Auto-generated method stub
+		wordGramEnvironment.shutDown();
 
 	}
 

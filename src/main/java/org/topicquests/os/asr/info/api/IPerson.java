@@ -7,11 +7,15 @@ package org.topicquests.os.asr.info.api;
 
 import com.tinkerpop.blueprints.Vertex;
 
+import net.minidev.json.JSONObject;
+
 /**
  * 
  * @author jackpark
  *
  */
 public interface IPerson extends Vertex {
+
+	JSONObject getJSONObject();
 
 }
