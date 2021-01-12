@@ -7,7 +7,8 @@ package org.topicquests.os.asr.info;
 
 import java.util.Set;
 
-import org.topicquests.os.asr.info.api.IEnterprise;
+import org.topicquests.os.asr.info.api.IAgent;
+import org.topicquests.os.asr.info.api.IOceanConstants;
 import org.topicquests.os.asr.wordgram.WordGramEnvironment;
 
 import com.tinkerpop.blueprints.Direction;
@@ -23,7 +24,7 @@ import net.minidev.json.JSONObject;
  * @author jackpark
  *
  */
-public class EnterpriseNode implements IEnterprise {
+public class InstitutionNode implements IAgent {
 	private WordGramEnvironment environment;
 	private SqlGraph graph;
 	private SqlVertex data;
@@ -34,11 +35,11 @@ public class EnterpriseNode implements IEnterprise {
 	 * @param v
 	 * @param env
 	 */
-	public EnterpriseNode(SqlVertex v, WordGramEnvironment env) {
+	public InstitutionNode(SqlVertex v, WordGramEnvironment env) {
 		data = v;
 		//label is set later
 		environment = env;
-		environment.logDebug("EnterpriseNode- "+data);
+		environment.logDebug("InstitutionNode- "+data);
 		graph = environment.getSqlGraph();
 		synchObject = new Object();
 	}
@@ -96,5 +97,15 @@ public class EnterpriseNode implements IEnterprise {
 	@Override
 	public JSONObject getJSONObject() {
 		return data.getData();
+	}
+
+	@Override
+	public String getAgentType() {
+		return IOceanConstants.INSTITUTION_TYPE;
+	}
+
+	@Override
+	public void setAgentType(String atype) {
+		data.setProperty(IOceanConstants.AGENT_TYPE, IOceanConstants.INSTITUTION_TYPE);
 	}
 }

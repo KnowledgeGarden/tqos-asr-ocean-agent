@@ -66,17 +66,16 @@ public interface IInfoOcean extends IWordGramAgentModel {
 	// Nodes - Vertices
 	//////////////////////////
 	
+	
 	ITriple createTripleNode(String id, String label);
 	
 	IResult getTriple(String id);
 	
-	IPerson createPersonNode(String id, String label);
 	
-	IResult getPerson(String id);
 	
-	IEnterprise createEnterpriseNode(String id, String label);
+	IAgent createInstitutionNode(String id, String label);
 	
-	IResult getEnterpriseNode(String id);
+	IResult getInstitutionNode(String id);
 	
 	// links instead public IRelation createRelationNode(String id, String label, String type);
 	
@@ -101,11 +100,25 @@ public interface IInfoOcean extends IWordGramAgentModel {
 	
 	Edge connectAuthorToDocument(String auFromId, String docToId);
 	
-	Edge connectAuthorToEmployer(String auFromId, String empToId);
+	Edge connectAuthorToInstitution(String auFromId, String empToId);
 	
 	Edge connectAuthorToFunder(String auFromId, String funToId); //???
 	Edge connectDocumentToFunder(String docFromId, String funToId); //???
 	Edge connectEmployerFunder(String empFromId, String funToId); // ???
 
-
+	/**
+	 * Wire up keywords to their documents
+	 * @param keyWordId
+	 * @param documentId
+	 * @return
+	 */
+	Edge connectKeyWordGramToDocument(String keyWordId, String documentId);
+	
+	//////////////////////
+	// Query
+	//////////////////////
+	
+	IResult findByLabel(String label);
+	
+	IResult findByKeyValuePair(String key, String value);
 }

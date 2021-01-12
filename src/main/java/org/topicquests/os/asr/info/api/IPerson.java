@@ -14,8 +14,7 @@ import net.minidev.json.JSONObject;
  * @author jackpark
  *
  */
-public interface IPerson extends Vertex {
+public interface IPerson extends IAgent {
 
-	JSONObject getJSONObject();
 
 }

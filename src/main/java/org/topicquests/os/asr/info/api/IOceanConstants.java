@@ -9,14 +9,14 @@ package org.topicquests.os.asr.info.api;
  * @author jackpark
  *
  */
-public interface IConstants {
+public interface IOceanConstants {
 	/** Node Types */
 	public static final String
 		DOCUMENT_TYPE		= "DocType",
 		WORDGRAM_TYPE		= "WgType",
-		TRIPLE_TYPE			= "TrpType",
-		PERSON_TYPE			= "PsnType",
-		ENTERPRISE_TYPE		= "EntType";
+		TRIPLE_TYPE			= "TrpType"; //,
+		//PERSON_TYPE			= "PsnType",
+		//ENTERPRISE_TYPE		= "EntType";
 		//RELATION_TYPE
 	
 	/** Primary Link Types */
@@ -26,7 +26,8 @@ public interface IConstants {
 		EMPLOYER_LINK		= "EmpLink",
 		FUNDER_LINK			= "FndrLink",
 		SENTENCE_LINK		= "SentLink",
-		TRIPLE_LINK			= "TrplLink";
+		TRIPLE_LINK			= "TrplLink",
+		KEYWORD_LINK		= "KeywordLink";
 	/** Coherence-Relation Link types */
 	public static final String
 		DISAGREE_LINK		= "DisagreesWith",
@@ -38,6 +39,16 @@ public interface IConstants {
 	
 	/** node fields */
 	public static final String 
-	ID			 			= "id";
+		ID			 		= "id",
+		AGENT_TYPE			= "agntType";
+	
+	/** Agent Types */
+	public static final String
+		INSTITUTION_TYPE	= "institution",
+		AUTHOR_TYPE			= "author";
+	
+	public static final String
+		OCEAN_NODE_TYPE		= "onType";
+	
 
 }

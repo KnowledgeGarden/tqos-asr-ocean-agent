@@ -12,9 +12,9 @@ tq_graph.vertices (
 	label text NOT NULL
 );
 
-GRANT ALL PRIVILEGES ON tq_graph.vertices TO tq_proxy;
+GRANT ALL PRIVILEGES ON tq_graph.verticesTO tq_proxy;
 GRANT SELECT ON tq_graph.vertices TO tq_proxy_ro;
-
+ 
 CREATE INDEX IF NOT EXISTS idx_vertex_ids
 	ON tq_graph.vertices (id);
 

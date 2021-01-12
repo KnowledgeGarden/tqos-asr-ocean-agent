@@ -14,8 +14,11 @@ import net.minidev.json.JSONObject;
  * @author jackpark
  *
  */
-public interface IEnterprise extends Vertex {
+public interface IAgent extends Vertex {
 
+	String getAgentType();
+	void setAgentType(String atype);
+	
 	JSONObject getJSONObject();
 
 }

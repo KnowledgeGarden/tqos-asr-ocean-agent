@@ -7,6 +7,7 @@ package org.topicquests.os.asr.info;
 
 import java.util.Set;
 
+import org.topicquests.os.asr.info.api.IOceanConstants;
 import org.topicquests.os.asr.info.api.IPerson;
 import org.topicquests.os.asr.wordgram.WordGramEnvironment;
 
@@ -98,5 +99,17 @@ public class PersonNode implements IPerson {
 	@Override
 	public JSONObject getJSONObject() {
 		return data.getData();
+	}
+
+
+	@Override
+	public String getAgentType() {
+		return IOceanConstants.AUTHOR_TYPE;
+	}
+
+
+	@Override
+	public void setAgentType(String atype) {
+		data.setProperty(IOceanConstants.AGENT_TYPE, IOceanConstants.AUTHOR_TYPE);
 	}
 }
