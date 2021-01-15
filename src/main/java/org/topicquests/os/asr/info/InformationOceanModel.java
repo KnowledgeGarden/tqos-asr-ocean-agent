@@ -98,7 +98,7 @@ public class InformationOceanModel extends WordGramModel implements IInfoOcean {
 	}
 */
 	@Override
-	public IAgent createInstitutionNode(String id, String label) {
+	public IAgent createInstitutionNode(String label) {
 		IAgent result = null;
     	IPostgresConnection conn = null;
 	    IResult r = new ResultPojo();
@@ -106,7 +106,9 @@ public class InformationOceanModel extends WordGramModel implements IInfoOcean {
         	conn = provider.getConnection();
            	conn.setProxyRole(r);
             conn.beginTransaction(r);
-            SqlVertex v = (SqlVertex)graph().addVertex(conn, id, label, r);
+            IResult x = super.processString(conn, label, "SystemUser", null, r);
+            String gid = (String)x.getResultObject();
+            SqlVertex v = (SqlVertex)graph().getVertex(gid, conn, r);
             v.setProperty(conn, IOceanConstants.OCEAN_NODE_TYPE, IOceanConstants.INSTITUTION_TYPE, r);
             result = new InstitutionNode(v, wgEnvironment);
             conn.endTransaction(r);

@@ -72,8 +72,12 @@ public interface IInfoOcean extends IWordGramAgentModel {
 	IResult getTriple(String id);
 	
 	
-	
-	IAgent createInstitutionNode(String id, String label);
+	/**
+	 * Creates a WordGram ID from {@ code label}
+	 * @param label
+	 * @return
+	 */
+	IAgent createInstitutionNode(String label);
 	
 	IResult getInstitutionNode(String id);
 	
