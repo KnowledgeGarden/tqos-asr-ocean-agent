@@ -235,7 +235,8 @@ public class InformationOceanModel extends WordGramModel implements IInfoOcean {
         	conn = provider.getConnection();
            	conn.setProxyRole(r);
             conn.beginTransaction(r);
-    		result = graph.addEdge(conn, UUID.randomUUID().toString(), auFromId, docToId, IOceanConstants.AUTHOR_LINK, r);
+            if (!graph.edgeExists(conn, auFromId, docToId, IOceanConstants.AUTHOR_LINK))
+            	result = graph.addEdge(conn, UUID.randomUUID().toString(), auFromId, docToId, IOceanConstants.AUTHOR_LINK, r);
     		environment.logDebug("IOM.cA2D-2 "+result);
 
             conn.endTransaction(r);
@@ -259,7 +260,8 @@ public class InformationOceanModel extends WordGramModel implements IInfoOcean {
         	conn = provider.getConnection();
            	conn.setProxyRole(r);
             conn.beginTransaction(r);
-    		result = graph.addEdge(conn, UUID.randomUUID().toString(), auFromId, empToId, IOceanConstants.EMPLOYER_LINK, r);
+            if (!graph.edgeExists(conn, auFromId, empToId, IOceanConstants.EMPLOYER_LINK))
+            	result = graph.addEdge(conn, UUID.randomUUID().toString(), auFromId, empToId, IOceanConstants.EMPLOYER_LINK, r);
     		environment.logDebug("IOM.cA2E-2 "+result);
             conn.endTransaction(r);
         } catch (Exception e) {
@@ -300,8 +302,7 @@ public class InformationOceanModel extends WordGramModel implements IInfoOcean {
         	conn = provider.getConnection();
            	conn.setProxyRole(r);
             conn.beginTransaction(r);
-    		result = graph.addEdge(conn, UUID.randomUUID().toString(), keyWordId, documentId, IOceanConstants.EMPLOYER_LINK, r);
-    		environment.logDebug("IOM.cK2D-2 "+result);
+            result = this.connectKeyWordGramToDocument(conn, keyWordId, documentId, r);
             conn.endTransaction(r);
         } catch (Exception e) {
         	e.printStackTrace();
@@ -310,6 +311,16 @@ public class InformationOceanModel extends WordGramModel implements IInfoOcean {
         } finally {
 	    	conn.closeConnection(r);
         }
+		return result;
+	}
+
+	@Override
+	public Edge connectKeyWordGramToDocument(IPostgresConnection conn, String keyWordId, String documentId, IResult r)
+			throws Exception {
+		Edge result = null;
+        if (!graph.edgeExists(conn, keyWordId, documentId, IOceanConstants.KEYWORD_LINK))
+    		result = graph.addEdge(conn, UUID.randomUUID().toString(), keyWordId, documentId, IOceanConstants.KEYWORD_LINK, r);
+        environment.logDebug("IOM.cK2D-2 "+result);
 		return result;
 	}
 
@@ -326,5 +337,5 @@ public class InformationOceanModel extends WordGramModel implements IInfoOcean {
 		//TODO
 		return result;
 	}
-
+	
 }

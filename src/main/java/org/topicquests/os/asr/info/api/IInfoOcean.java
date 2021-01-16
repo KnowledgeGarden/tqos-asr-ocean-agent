@@ -14,6 +14,7 @@ import com.tinkerpop.blueprints.Edge;
 
 import org.topicquests.os.asr.info.InformationEnvironment;
 import org.topicquests.os.asr.wordgram.api.IWordGramAgentModel;
+import org.topicquests.pg.api.IPostgresConnection;
 
 /**
  * @author jackpark
@@ -102,8 +103,20 @@ public interface IInfoOcean extends IWordGramAgentModel {
 	
 	Edge connectWordGramToTupleBySentenceId(String wgFromId, String tpToId, String sentenceId);
 	
+	/**
+	 * 
+	 * @param auFromId
+	 * @param docToId
+	 * @return can return {@code null} if connection exists
+	 */
 	Edge connectAuthorToDocument(String auFromId, String docToId);
 	
+	/**
+	 * 
+	 * @param auFromId
+	 * @param empToId
+	 * @return can return {@code null} if connection exists
+	 */
 	Edge connectAuthorToInstitution(String auFromId, String empToId);
 	
 	Edge connectAuthorToFunder(String auFromId, String funToId); //???
@@ -114,10 +127,11 @@ public interface IInfoOcean extends IWordGramAgentModel {
 	 * Wire up keywords to their documents
 	 * @param keyWordId
 	 * @param documentId
-	 * @return
+	 * @return can return {@code null} if connection exists
 	 */
 	Edge connectKeyWordGramToDocument(String keyWordId, String documentId);
 	
+	Edge connectKeyWordGramToDocument(IPostgresConnection conn, String keyWordId, String documentId, IResult r) throws Exception ;
 	//////////////////////
 	// Query
 	//////////////////////
